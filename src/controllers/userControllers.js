@@ -8,7 +8,9 @@ class UserController {
         res.status(500).json({ error: err.message });
         return;
       }
-      res.json(result);
+      res.status(200).json({
+        users: result,
+      });
     });
   }
 
@@ -19,7 +21,9 @@ class UserController {
         res.status(500).json({ error: err.message });
         return;
       }
-      res.json(result);
+      res.status(200).json(
+        result,
+      );
     });
   }
 
