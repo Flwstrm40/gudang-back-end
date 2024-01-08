@@ -7,8 +7,8 @@ class AuthController {
   async login(req, res) {
     try {
       const { username, password } = req.body;
-      console.log(username);
-      console.log(password);
+      // console.log(username);
+      // console.log(password);
 
       // Check if the username exists in the database
       db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
