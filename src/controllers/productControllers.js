@@ -62,8 +62,7 @@ class ProductController {
   addStock(req, res) {
     const id = req.params.id;
     const { stok } = req.body;
-
-    console.log("stok", stok)
+    
     productModel.updateStock(id, stok, (err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
