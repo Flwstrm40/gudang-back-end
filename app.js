@@ -7,6 +7,7 @@ const cors = require("cors");
 //import routes
 const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/authRoutes');
+const productRoutes = require('./src/routes/productRoutes');
 
 const dotenv = require('dotenv');
 
@@ -29,6 +30,10 @@ app.use('/user', userRoutes);
 app.use(cookieParser());
 app.use(session({ secret: process.env.SECRET_KEY, resave: true, saveUninitialized: true }));
 app.use('/auth', authRoutes);
+
+// Routes for products
+app.use('/products', productRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
