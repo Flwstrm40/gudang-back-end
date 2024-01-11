@@ -17,6 +17,10 @@ class ProductModel {
     db.query('UPDATE products SET ? WHERE id_produk = ?', [product, id], callback);
   }
 
+  updateStock(id, stok, callback) {
+    db.query('UPDATE products SET stok = stok + ? WHERE id_produk = ?', [stok, id], callback);
+  }
+
   deleteProduct(id, callback) {
     db.query('DELETE FROM products WHERE id_produk = ?', [id], callback);
   }
