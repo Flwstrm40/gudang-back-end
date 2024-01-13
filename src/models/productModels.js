@@ -24,6 +24,26 @@ class ProductModel {
   deleteProduct(id, callback) {
     db.query('DELETE FROM products WHERE id_produk = ?', [id], callback);
   }
+
+  //check if kode_produk is available
+  async getProductByKodeProduk(kode_produk) {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT * FROM products WHERE kode_produk = ?', [kode_produk], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results.length > 0 ? results[0] : null);
+        }
+      });
+    });
+  }
+
+  async isKodeProdukAvailable(kode_produk, id_produk) {
+    const existingProduct = await this.getProductByKodeProduk(kode_produk);
+
+    // If the kode_produk is not taken or belongs to the current user, return true
+    return !existingProduct || existingProduct.id_produk === id_produk;
+  }
 }
 
 module.exports = new ProductModel();

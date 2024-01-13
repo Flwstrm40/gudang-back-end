@@ -20,4 +20,7 @@ router.put('/addStock/:id', productController.addStock);
 // Delete a product
 router.delete('/:id', productController.deleteProduct);
 
+// Check if kode_produk is available
+router.post('/cekKodeProduk', productController.checkKodeProdukAvailability);
+
 module.exports = router;
