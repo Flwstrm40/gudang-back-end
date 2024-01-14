@@ -1,4 +1,4 @@
-CREATE TABLE nama_produkroducts (
+CREATE TABLE products (
   id_produk INT PRIMARY KEY AUTO_INCREMENT,
   kode_produk VARCHAR(50) NOT NULL,
   nama_produk VARCHAR(255) NOT NULL,
