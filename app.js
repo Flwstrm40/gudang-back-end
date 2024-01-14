@@ -9,6 +9,7 @@ const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 const productRoutes = require('./src/routes/productRoutes');
 const storeRoutes = require('./src/routes/storeRoutes');
+const transferRoutes = require('./src/routes/transferRoutes');
 
 const dotenv = require('dotenv');
 
@@ -38,6 +39,8 @@ app.use('/products', productRoutes);
 // Routes for stores
 app.use('/stores', storeRoutes);
 
+// Routes for transfers
+app.use('/transfers', transferRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
