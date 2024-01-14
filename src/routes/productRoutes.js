@@ -23,4 +23,7 @@ router.delete('/:id', productController.deleteProduct);
 // Check if kode_produk is available
 router.post('/cekKodeProduk', productController.checkKodeProdukAvailability);
 
+// Transfer stock
+router.put('/transferStock/:id_produk', productController.transferStock);
+
 module.exports = router;

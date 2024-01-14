@@ -44,6 +44,39 @@ class ProductModel {
     // If the kode_produk is not taken or belongs to the current user, return true
     return !existingProduct || existingProduct.id_produk === id_produk;
   }
+
+  // get stock by id
+  getProductStock(id_produk) {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT stok FROM products WHERE id_produk = ?', [id_produk], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results.length > 0 ? results[0].stok : 0);
+        }
+      });
+    });
+  }
+
+  // transfer stock
+  async transferStock(id_produk, jumlah) {
+    const stok = await this.getProductStock(id_produk);
+
+    return new Promise((resolve, reject) => {
+      if (stok < jumlah) {
+        reject(new Error('Insufficient stock for transfer'));
+        return;
+      }
+
+      db.query('UPDATE products SET stok = ? WHERE id_produk = ?', [stok - jumlah, id_produk], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
 }
 
 module.exports = new ProductModel();

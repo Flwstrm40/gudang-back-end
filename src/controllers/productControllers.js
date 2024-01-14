@@ -86,6 +86,30 @@ class ProductController {
       res.status(500).json({ message: 'Internal Server Error' });
     }
   }
+
+  // Controller for transfer stock
+  async transferStock(req, res) {
+    const { id_produk } = req.params;
+    const { stok } = req.body;
+
+    try {
+      // Retrieve the current stock of the product
+      const currentStock = await productModel.getProductStock(id_produk);
+
+      // Check if the requested transfer quantity is greater than the available stock
+      if (stok > currentStock) {
+        res.status(400).json({ error: 'Requested quantity exceeds available stock' });
+        return;
+      }
+
+      // Proceed with the stock transfer
+      await productModel.transferStock(id_produk, stok);
+      res.json({ message: 'Stock transfer successful' });
+    } catch (error) {
+      console.error('Error during stock transfer:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
 }
 
 module.exports = new ProductController();
