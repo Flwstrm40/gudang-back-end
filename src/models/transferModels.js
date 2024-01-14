@@ -2,12 +2,12 @@ const db = require('../db/db')
 
 class TransferModel {
   getAllTransfer(callback) {
-    db.query('SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.nama_produk FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk', callback);
+    db.query('SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.* FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk', callback);
   }
 
   getTransferById(id, callback) {
     db.query(
-      'SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.nama_produk FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk AND t.id_transfer = ?',
+      'SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.* FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk AND t.id_transfer = ?',
       [id],
       callback
     );
