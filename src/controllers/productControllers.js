@@ -98,13 +98,13 @@ class ProductController {
 
       // Check if the requested transfer quantity is greater than the available stock
       if (stok > currentStock) {
-        res.status(400).json({ error: 'Requested quantity exceeds available stock' });
+        res.status(400).json({ error: 'Kuantitas yang diminta melebihi stok yang tersedia.'});
         return;
       }
 
       // Proceed with the stock transfer
       await productModel.transferStock(id_produk, stok);
-      res.json({ message: 'Stock transfer successful' });
+      res.json({ message: 'Berhasil melakukan transfer stok' });
     } catch (error) {
       console.error('Error during stock transfer:', error);
       res.status(500).json({ message: 'Internal Server Error' });
