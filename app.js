@@ -8,6 +8,7 @@ const cors = require("cors");
 const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 const productRoutes = require('./src/routes/productRoutes');
+const storeRoutes = require('./src/routes/storeRoutes');
 
 const dotenv = require('dotenv');
 
@@ -33,6 +34,9 @@ app.use('/auth', authRoutes);
 
 // Routes for products
 app.use('/products', productRoutes);
+
+// Routes for stores
+app.use('/stores', storeRoutes);
 
 
 app.get('/', (req, res) => {
