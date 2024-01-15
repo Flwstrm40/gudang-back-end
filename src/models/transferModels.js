@@ -5,13 +5,34 @@ class TransferModel {
     db.query('SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.* FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk', callback);
   }
 
-  getTransferById(id, callback) {
-    db.query(
-      'SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.* FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk AND t.id_transfer = ?',
-      [id],
-      callback
-    );
+  async getTransferById(id) {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.* FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk AND t.id_transfer = ?', [id], (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
   }
+  
+
+  // getTransferById(id) {
+  //   return new Promise((resolve, reject) => {
+  //     db.query(
+  //       'SELECT t.id_transfer, t.id_produk, t.id_toko, t.kuantitas, t.asal, t.keterangan, t.status, s.nama_toko, p.* FROM transfers t, stores s, products p WHERE t.id_toko = s.id_toko and t.id_produk = p.id_produk AND t.id_transfer = ?',
+  //       [id],
+  //       (err, result) => {
+  //         if (err) {
+  //           reject(err);
+  //         } else {
+  //           resolve(result[0]); 
+  //         }
+  //       }
+  //     );
+  //   });
+  // }
 
   addTransfer(transfer, callback) {
     db.query('INSERT INTO transfers SET ?', [transfer], callback);

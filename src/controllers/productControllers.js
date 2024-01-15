@@ -59,18 +59,26 @@ class ProductController {
     });
   }
 
-  addStock(req, res) {
-    const id = req.params.id;
-    const { stok } = req.body;
-    
-    productModel.updateStock(id, stok, (err, result) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-        return;
-      }
+  async addStock(req, res) {
+    try {
+      const id = req.params.id;
+      const { stok } = req.body;
+  
+      const result = await new Promise((resolve, reject) => {
+        productModel.updateStock(id, stok, (err, result) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          resolve(result);
+        });
+      });
+  
       res.json(result);
-    });
-  }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }  
 
   // check if kode_produk is available
   async checkKodeProdukAvailability(req, res) {
@@ -107,6 +115,19 @@ class ProductController {
       res.json({ message: 'Berhasil melakukan transfer stok' });
     } catch (error) {
       console.error('Error during stock transfer:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
+
+  // Controller for checking product stock
+  async checkStock(req, res) {
+    const { id_produk } = req.params;
+
+    try {
+      const stock = await productModel.getProductStock(id_produk);
+      res.json({ stock });
+    } catch (error) {
+      console.error('Error during check stock:', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
   }
