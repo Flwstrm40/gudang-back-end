@@ -11,6 +11,7 @@ const productRoutes = require('./src/routes/productRoutes');
 const storeRoutes = require('./src/routes/storeRoutes');
 const transferRoutes = require('./src/routes/transferRoutes');
 const inHistoryRoutes = require('./src/routes/inHistoryRoutes');
+const outHistoryRoutes = require('./src/routes/outHistoryRoutes');
 
 const dotenv = require('dotenv');
 
@@ -45,6 +46,9 @@ app.use('/transfers', transferRoutes);
 
 // Routes for the inHistories
 app.use('/inHistories', inHistoryRoutes);
+
+// Routes for the outHistories
+app.use('/outHistories', outHistoryRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
