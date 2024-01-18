@@ -45,9 +45,9 @@ class UserController {
         res.status(500).json({ error: err.message });
         return;
       }
-      res.status(200).json(
-        result,
-      );
+      res.status(200).json({
+        admins: result,
+    });
     });
   }
 
@@ -84,6 +84,28 @@ class UserController {
       res.json(result);
     });
   }
+
+  // reset password
+  resetPassword(req, res) {
+    const id = req.params.id;
+    const user = req.body;
+  
+    userModel.resetPassword(id, user, (err, result) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+  
+      // Check if the password was successfully updated
+      if (result.affectedRows === 0) {
+        res.status(404).json({ error: 'User not found' });
+        return;
+      }
+  
+      res.json({ message: 'Password Berhasil di-Reset' });
+    });
+  }
+  
 }
 
 module.exports = new UserController();

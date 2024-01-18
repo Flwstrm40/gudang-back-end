@@ -44,6 +44,17 @@ class UserModel {
   deleteUser(id, callback) {
     db.query('DELETE FROM users WHERE id = ?', [id], callback);
   }
+
+  // reset password
+  async resetPassword(id, users, callback) {
+    // Hash the new password before updating the users
+    if (users.password) {
+      users.password = await bcrypt.hash(users.password, 10);
+    }
+  
+    // Update user password to "admin"
+    db.query('UPDATE users SET password = ? WHERE id = ?', [users.password, id], callback);
+  }  
 }
 
 module.exports = new UserModel();
