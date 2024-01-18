@@ -27,6 +27,30 @@ class UserController {
     });
   }
 
+  getKepalaGudang(req, res) {
+    userModel.getKepalaGudang((err, result) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.status(200).json(
+        result,
+      );
+    });
+  }
+
+  getAdmin(req, res) {
+    userModel.getAdmin((err, result) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.status(200).json(
+        result,
+      );
+    });
+  }
+
   addUser(req, res) {
     const user = req.body;
     userModel.addUser(user, (err, result) => {

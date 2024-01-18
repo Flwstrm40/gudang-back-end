@@ -11,6 +11,15 @@ class UserModel {
     db.query('SELECT * FROM users WHERE id = ?', [id], callback);
   }
 
+  getKepalaGudang(callback) {
+    db.query('SELECT * FROM users WHERE role = "kepala gudang"', callback);
+  }
+
+  getAdmin(callback) {
+    db.query('SELECT * FROM users WHERE role = "admin"', callback);
+  }
+
+
   async addUser(users, callback) {
     // Hash the password before storing it in the database
     const hashedPassword = await bcrypt.hash(users.password, 10);
