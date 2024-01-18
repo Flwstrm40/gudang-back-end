@@ -7,5 +7,5 @@ CREATE TABLE out_histories (
     pj VARCHAR(50) NOT NULL,
     id_customer INT,
     id_transfer INT,
-    
+    harga DECIMAL(10, 2) 
 );
