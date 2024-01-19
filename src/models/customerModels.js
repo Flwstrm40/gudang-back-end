@@ -23,11 +23,11 @@ class CustomerModel {
   }
 
   updateCustomer(id, customer, callback) {
-    db.query('UPDATE customers SET ? WHERE id_transfer = ?', [customer, id], callback);
+    db.query('UPDATE customers SET ? WHERE id_customer = ?', [customer, id], callback);
   }
 
   deleteCustomer(id, callback) {
-    db.query('DELETE FROM customers WHERE id_transfer = ?', [id], callback);
+    db.query('DELETE FROM customers WHERE id_customer = ?', [id], callback);
   }
 }
 
