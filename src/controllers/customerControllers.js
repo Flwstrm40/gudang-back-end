@@ -10,7 +10,7 @@ class TransferController {
         return;
       }
       res.status(200).json({
-        transfers: result,
+        customers: result,
       });
     });
   }
