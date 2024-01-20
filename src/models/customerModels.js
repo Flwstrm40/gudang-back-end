@@ -29,6 +29,11 @@ class CustomerModel {
   deleteCustomer(id, callback) {
     db.query('DELETE FROM customers WHERE id_customer = ?', [id], callback);
   }
+
+  // get total data
+  getTotalData(callback) {
+    db.query('SELECT COUNT(*) AS total_cust FROM customers WHERE status_terima = "0"', callback);
+  }
 }
 
 module.exports = new CustomerModel();

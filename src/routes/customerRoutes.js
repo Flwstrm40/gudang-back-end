@@ -5,6 +5,9 @@ const CustomerController = require('../controllers/customerControllers');
 // Get all Customers
 router.get('/', CustomerController.getAllCustomers);
 
+// Get total data
+router.get('/total', CustomerController.getTotalData);
+
 // Get a Customer by ID
 router.get('/:id', CustomerController.getCustomerById);
 
@@ -16,6 +19,7 @@ router.put('/:id', CustomerController.updateCustomer);
 
 // Delete a Customer
 router.delete('/:id', CustomerController.deleteCustomer);
+
 
 
 module.exports = router;

@@ -108,6 +108,16 @@ class TransferController {
     }
   }
 
+  // get total data
+  getTotalData(req, res) {
+    customerModel.getTotalData((err, result) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.status(200).json(result);
+    });
+  }
 
   
 }
