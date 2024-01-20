@@ -33,13 +33,17 @@ class TransferController {
   
     try {
       const currentStock = await productModel.getProductStock(customer.id_produk);
+      
+      // console.log("Customer ID:", customer.id_produk);
+      // console.log("Current stock:", currentStock);
+      // console.log("Customer quantity:", customer.kuantiti);
   
       if (customer.kuantiti > currentStock) {
-        return res.status(400).json({ error: "Stok tidak cukup untuk ditransfer" });
+        return res.status(400).json({ error: "Stok tidak cukup untuk dipesan" });
       }
   
       // Proceed with adding the customer if stock is sufficient
-      const result = await customerModel.addCustomer(customer); // Assuming you have a Promise-based version of addCustomer
+      const result = await customerModel.addCustomer(customer);
   
       // If addition is successful, update the product stock by decreasing the transferred quantity
       await productController.transferStock({ params: { id_produk: customer.id_produk }, body: { stok: customer.kuantiti } }, res);
@@ -52,6 +56,7 @@ class TransferController {
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
+  
   
   
 
@@ -74,10 +79,11 @@ class TransferController {
     try {
       // Retrieve the customer to be deleted
       const customer = await customerModel.getCustomerById(id); 
+      // console.log("Customer:", customer[0]);
       
       // If the customer is not found, return an error
       if (!customer) {
-        return res.status(404).json({ error: "Transfer tidak ditemukan" });
+        return res.status(404).json({ error: "Customer tidak ditemukan" });
       }
 
       // console.log("Transfer:", customer[0]);

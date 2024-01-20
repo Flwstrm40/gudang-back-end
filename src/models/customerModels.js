@@ -7,7 +7,7 @@ class CustomerModel {
 
   async getCustomerById(id) {
     return new Promise((resolve, reject) => {
-      db.query('SELECT c.*, p.* FROM customers c, products p WHERE c.id_produk = p.id_produk AND c.id_produk = ?', [id], (err, result) => {
+      db.query('SELECT c.*, p.* FROM customers c, products p WHERE c.id_produk = p.id_produk AND c.id_customer = ?', [id], (err, result) => {
         if (err) {
           reject(err);
         } else {
