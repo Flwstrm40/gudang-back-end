@@ -45,6 +45,11 @@ class TransferModel {
   deleteTransfer(id, callback) {
     db.query('DELETE FROM transfers WHERE id_transfer = ?', [id], callback);
   }
+
+  // get total transfer
+  getTotalTransfer(callback) {
+    db.query('SELECT COUNT(*) AS total_transfer FROM transfers WHERE status = 0', callback);
+  }
 }
 
 module.exports = new TransferModel();
