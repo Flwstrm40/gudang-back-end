@@ -18,6 +18,19 @@ const dotenv = require('dotenv');
 
 dotenv.config({ path: './.env' });
 
+const app = express();
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+//   res.header('Access-Control-Allow-Credentials', true);
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
+
+
+// app.use(cors());
+
 app.use(cors({
   origin: '*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -30,7 +43,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
