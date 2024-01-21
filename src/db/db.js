@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
 // Buat koneksi MySQL dari URL
-const db = mysql.createConnection('mysql://root:cBF3c-c3fgE4BcEDBFf55ah3Gc5bGbcE@viaduct.proxy.rlwy.net:42879/railway');
+const db = mysql.createConnection(process.env.MYSQL_URL);
 
 db.connect((err) => {
     if (err) {
