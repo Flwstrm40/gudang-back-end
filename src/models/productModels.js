@@ -77,6 +77,12 @@ class ProductModel {
       });
     });
   }
+
+  // get total products
+  getTotalProduct(callback) {
+    db.query('SELECT COUNT(*) AS total_product FROM products', callback);
+  }
+
 }
 
 module.exports = new ProductModel();

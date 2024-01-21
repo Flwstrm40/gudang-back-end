@@ -131,6 +131,17 @@ class ProductController {
       res.status(500).json({ message: 'Internal Server Error' });
     }
   }
+
+  // Controller to get total products
+  getTotalProduct(req, res) {
+    productModel.getTotalProduct((err, result) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json(result);
+    });
+  }
 }
 
 module.exports = new ProductController();
