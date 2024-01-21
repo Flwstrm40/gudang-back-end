@@ -19,14 +19,20 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
 const app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({
   origin: '*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 // Routes for the user entity
 app.use('/user', userRoutes);
@@ -58,11 +64,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
+
 
 const PORT = process.env.PORT || 5050;
 app.listen(PORT ,() => {
