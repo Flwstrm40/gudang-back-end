@@ -1,18 +1,13 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
-// Start MySQL connection
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
+// Buat koneksi MySQL dari URL
+const db = mysql.createConnection('mysql://root:cBF3c-c3fgE4BcEDBFf55ah3Gc5bGbcE@viaduct.proxy.rlwy.net:42879/railway');
 
 db.connect((err) => {
     if (err) {
-        console.log(err.message + ' --- ' + err.code);
+        console.error('Error connecting to MySQL:', err.message);
         throw err;
     }
     console.log('=== Connected to MySQL database ===');
