@@ -18,13 +18,15 @@ const dotenv = require('dotenv');
 
 dotenv.config({ path: './.env' });
 
-const app = express();
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 
+// Set cache-control headers
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   next();
 });
 
