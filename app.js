@@ -4,6 +4,19 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const cors = require("cors");
 
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
+
+// Set cache-control headers
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+});
+
+
 //import routes
 const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/authRoutes');
@@ -30,18 +43,6 @@ const app = express();
 
 
 // app.use(cors());
-
-app.use(cors({
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
-
-// Set cache-control headers
-app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  next();
-});
 
 
 app.use(bodyParser.json());
