@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
+// const MySQLStore = require('express-mysql-session')(session);
 const cors = require("cors");
 const app = express();
 
@@ -13,18 +13,18 @@ app.use(cors({
 }));
 
 // // Set cache-control headers
-// app.use((req, res, next) => {
-//   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-//   next();
-// });
-
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   next();
 });
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+//   res.header('Access-Control-Allow-Credentials', true);
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 
 
 //import routes
@@ -59,20 +59,19 @@ app.use('/user', userRoutes);
 // Routes for the auth entity
 app.use(cookieParser());
 
-const sessionStore = new MySQLStore({
-  host: process.env.DB_HOST,      
-  port: process.env.DB_PORT,       
-  user: process.env.DB_USER,      
-  password: process.env.DB_PASSWORD, 
-  database: process.env.DB_NAME,   
-});
+// const sessionStore = new MySQLStore({
+//   host: process.env.DB_HOST,      
+//   port: process.env.DB_PORT,       
+//   user: process.env.DB_USER,      
+//   password: process.env.DB_PASSWORD, 
+//   database: process.env.DB_NAME,   
+// });
 
 
 app.use(session({
-  secret: process.env.SECRET_KEY,
+  secret: process.env.SECRET_KEY,   
   resave: true,
   saveUninitialized: true,
-  store: sessionStore,
 }));
 
 
