@@ -13,13 +13,12 @@ app.use(cors({
 }));
 
 // // Set cache-control headers
-// app.use((req, res, next) => {
-//   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-//   next();
-// });
-
 app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+});
+
+app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
   res.header('Access-Control-Allow-Credentials', true);
