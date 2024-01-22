@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const MemoryStore = require('memorystore')(session)
+const MySQLStore = require('express-mysql-session')(session);
 const cors = require("cors");
 const app = express();
 
@@ -58,7 +58,24 @@ app.use('/user', userRoutes);
 
 // Routes for the auth entity
 app.use(cookieParser());
-app.use(session({ secret: process.env.SECRET_KEY, resave: true, saveUninitialized: true }));
+
+const sessionStore = new MySQLStore({
+  host: process.env.DB_HOST,      
+  port: process.env.DB_PORT,       
+  user: process.env.DB_USER,      
+  password: process.env.DB_PASSWORD, 
+  database: process.env.DB_NAME,   
+});
+
+
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: true,
+  saveUninitialized: true,
+  store: sessionStore,
+}));
+
+
 app.use('/auth', authRoutes);
 
 // Routes for products
