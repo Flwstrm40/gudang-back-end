@@ -59,7 +59,7 @@ app.use('/user', userRoutes);
 
 // Routes for the auth entity
 app.use(cookieParser());
-app.use(session({ secret: process.env.SECRET_KEY, resave: true, saveUninitialized: true, store: new MemoryStore({ checkPeriod: 86400000 }) }));
+app.use(session({ secret: process.env.SECRET_KEY, resave: true, saveUninitialized: true }));
 app.use('/auth', authRoutes);
 
 // Routes for products
