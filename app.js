@@ -11,9 +11,17 @@ app.use(cors({
   credentials: true,
 }));
 
-// Set cache-control headers
+// // Set cache-control headers
+// app.use((req, res, next) => {
+//   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+//   next();
+// });
+
 app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
@@ -33,13 +41,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
+
 
 
 // app.use(cors());
