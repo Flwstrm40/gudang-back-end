@@ -12,11 +12,11 @@ class UserModel {
   }
 
   getKepalaGudang(callback) {
-    db.query('SELECT * FROM users WHERE role = "kepala gudang"', callback);
+    db.query(`SELECT * FROM users WHERE role = 'kepala gudang'`, callback);
   }
 
   getAdmin(callback) {
-    db.query('SELECT * FROM users WHERE role = "admin"', callback);
+    db.query(`SELECT * FROM users WHERE role = 'admin'`, callback);
   }
 
 
