@@ -32,7 +32,7 @@ class CustomerModel {
 
   // get total data
   getTotalData(callback) {
-    db.query('SELECT COUNT(*) AS total_cust FROM customers WHERE status_terima = "0"', callback);
+    db.query(`SELECT COUNT(*) AS total_cust FROM customers WHERE status_terima = '0'`, callback);
   }
 }
 
