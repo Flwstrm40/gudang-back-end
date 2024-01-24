@@ -31,6 +31,14 @@ class AuthModel {
     // If the username is not taken or belongs to the current user, return true
     return !existingUser || existingUser.id === userId;
   }
+
+  async isUsernameAvailableAdd(username) {
+    const existingUser = await this.getUserByUsername(username);
+
+    // If the username is not taken or belongs to the current user, return true
+    return !existingUser;
+  }
+
   
 }
 

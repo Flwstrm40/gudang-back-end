@@ -70,6 +70,21 @@ class AuthController {
       res.status(500).json({ message: 'Internal Server Error' });
     }
   }
+
+  // check username availbitlity for add user
+  async checkUsernameAvailabilityAdd(req, res) {
+    try {
+      const { username } = req.body;
+
+      // Check if the username is available (excluding the current user)
+      const isUsernameAvailable = await authModel.isUsernameAvailableAdd(username);
+
+      res.json({ isUsernameAvailable });
+    } catch (error) {
+      console.error('Error checking username availability:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
   
 }
 
