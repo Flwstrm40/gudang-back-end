@@ -38,6 +38,8 @@ const inHistoryRoutes = require('./src/routes/inHistoryRoutes');
 const outHistoryRoutes = require('./src/routes/outHistoryRoutes');
 const customerRoutes = require('./src/routes/customerRoutes');
 const mixRoutes = require('./src/routes/mixRoutes');
+const orderRoutes = require('./src/routes/orderRoutes');
+const orderDetailRoutes = require('./src/routes/orderDetailRoutes');
 
 const dotenv = require('dotenv');
 
@@ -99,6 +101,12 @@ app.use('/customers', customerRoutes);
 
 // Routes for the mix
 app.use('/mix', mixRoutes);
+
+// Routes for the orders
+app.use('/orders', orderRoutes);
+
+// Routes for the orderDetails
+app.use('/orderDetails', orderDetailRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
