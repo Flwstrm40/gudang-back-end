@@ -5,7 +5,7 @@ const db = require('../db/db');
 class AuthModel {
   async getUserByUsername(username) {
     return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+      db.query('SELECT * FROM users WHERE username COLLATE utf8mb4_bin = ?', [username], (err, results) => {
         if (err) {
           reject(err);
         } else {
