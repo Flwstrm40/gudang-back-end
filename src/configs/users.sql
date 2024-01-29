@@ -6,3 +6,6 @@ CREATE TABLE users (
   displayName VARCHAR(255),
   role VARCHAR(255) NOT NULL
 );
+
+ALTER TABLE users
+ADD profilePhoto VARCHAR(255) null;

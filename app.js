@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const path = require('path');
 // const MySQLStore = require('express-mysql-session')(session);
 const cors = require("cors");
 const app = express();
@@ -47,7 +48,7 @@ dotenv.config({ path: './.env' });
 
 
 // app.use(cors());
-
+app.use('/src/uploads', express.static(path.join(__dirname, 'src/uploads')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
