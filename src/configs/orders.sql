@@ -1,4 +1,4 @@
-CREATE TABLE Orders (
+CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     nama_cust VARCHAR(255),
     no_telp VARCHAR(15),
