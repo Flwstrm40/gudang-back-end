@@ -2,7 +2,7 @@ const productModel = require("../models/productModels");
 const customerModel = require("../models/customerModels");
 const productController = require("./productControllers");
 
-class TransferController {
+class CustomerController {
   getAllCustomers(req, res) {
     customerModel.getAllCustomers((err, result) => {
       if (err) {
@@ -122,4 +122,4 @@ class TransferController {
   
 }
 
-module.exports = new TransferController();
+module.exports = new CustomerController();
