@@ -1,9 +1,11 @@
 CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
+    sales_order VARCHAR(255) null,
     nama_cust VARCHAR(255),
     no_telp VARCHAR(15),
     alamat VARCHAR(255),
     nama_sales VARCHAR(255),
+    tanggal_order DATE,
     jadwal_kirim DATE,
     total_harga DECIMAL(10, 2),
     total_dp1 DECIMAL(10, 2) null,

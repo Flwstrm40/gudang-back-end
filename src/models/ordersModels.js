@@ -5,16 +5,8 @@ class OrderModel {
     db.query('SELECT * FROM orders', callback);
   }
 
-  async getOrderById(id) {
-    return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM orders where order_id = ?', [id], (err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
-        }
-      });
-    });
+  async getOrderById(id, callback) {
+      db.query('SELECT * FROM orders where order_id = ?', [id], callback);
   }
 
   addOrder(order, callback) {
@@ -39,10 +31,12 @@ class OrderModel {
         db.query(`
     SELECT
         o.order_id AS order_id,
+        o.sales_order AS sales_order,
         o.nama_cust,
         o.no_telp,
         o.alamat,
         o.nama_sales,
+        o.tanggal_order,
         o.jadwal_kirim,
         o.total_harga,
         o.total_dp1,

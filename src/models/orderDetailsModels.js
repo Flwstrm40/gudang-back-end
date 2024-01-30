@@ -5,16 +5,8 @@ class OrderDetailModel {
     db.query('SELECT * FROM order_details', callback);
   }
 
-  async getOrderDetailById(id) {
-    return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM order_details where order_detail_id = ?', [id], (err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
-        }
-      });
-    });
+  async getOrderDetailById(id, callback) {
+      db.query('SELECT * FROM order_details where order_detail_id = ?', [id], callback);
   }
   
 
