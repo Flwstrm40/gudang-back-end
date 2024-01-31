@@ -9,3 +9,7 @@ CREATE TABLE out_histories (
     id_transfer INT,
     harga DECIMAL(10, 2) 
 );
+
+ALTER TABLE out_histories
+ADD order_id INT null
+[after id_customer];

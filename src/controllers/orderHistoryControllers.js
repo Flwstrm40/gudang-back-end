@@ -1,23 +1,23 @@
-const orderDetailModel = require("../models/orderDetailsModels");
+const orderHistoryModel = require("../models/orderHistoryModels");
 
-class OrderDetailController {
-  getAllOrderDetails(req, res) {
-    orderDetailModel.getAllOrderDetails((err, result) => {
+class OrderHistoryController {
+  getAllOrderHistories(req, res) {
+    orderHistoryModel.getAllOrderHistories((err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;
       }
       res.status(200).json({
-        order_details: result,
+        order_Historys: result,
       });
     });
   }
 
-  getOrderDetailById(req, res) {
+  getOrderHistoryById(req, res) {
     const id = req.params.id;
     // console.log(id)
-    // console.log(orderDetailModel.getOrderDetailById(id));
-    orderDetailModel.getOrderDetailById(id, (err, result) => {
+    // console.log(orderHistoryModel.getOrderHistoryById(id));
+    orderHistoryModel.getOrderHistoryById(id, (err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;
@@ -26,9 +26,9 @@ class OrderDetailController {
     });
   }
 
-  async addOrderDetail(req, res) {
+  async addOrderHistory(req, res) {
     const order = req.body;
-    orderDetailModel.addOrderDetail(order, (err, result) => {
+    orderHistoryModel.addOrderHistory(order, (err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;
@@ -37,11 +37,11 @@ class OrderDetailController {
     });
   }
 
-  updateOrderDetails(req, res) {
+  updateOrderHistory(req, res) {
     const id = req.params.id;
     const product = req.body;
 
-    orderDetailModel.updateOrderDetail(id, product, (err, result) => {
+    orderHistoryModel.updateOrderHistory(id, product, (err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;
@@ -50,9 +50,9 @@ class OrderDetailController {
     });
   }
 
-  deleteOrderDetails(req, res) {
+  deleteOrderHistory(req, res) {
     const id = req.params.id;
-    orderDetailModel.deleteOrderDetail(id, (err, result) => {
+    orderHistoryModel.deleteOrderHistory(id, (err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;
@@ -63,7 +63,7 @@ class OrderDetailController {
 
   // get total data
   getTotalData(req, res) {
-    orderDetailModel.getTotalData((err, result) => {
+    orderHistoryModel.getTotalData((err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;
@@ -75,4 +75,4 @@ class OrderDetailController {
   
 }
 
-module.exports = new OrderDetailController();
+module.exports = new OrderHistoryController();

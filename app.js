@@ -40,6 +40,7 @@ const customerRoutes = require('./src/routes/customerRoutes');
 const mixRoutes = require('./src/routes/mixRoutes');
 const orderRoutes = require('./src/routes/orderRoutes');
 const orderDetailRoutes = require('./src/routes/orderDetailRoutes');
+const orderHistoriesRoutes = require('./src/routes/orderHistoryRoutes');
 
 const dotenv = require('dotenv');
 
@@ -108,10 +109,12 @@ app.use('/orders', orderRoutes);
 // Routes for the orderDetails
 app.use('/orderDetails', orderDetailRoutes);
 
+// Routes for the orderHistories
+app.use('/orderHistories', orderHistoriesRoutes);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-
 
 
 const PORT = process.env.PORT || 5050;

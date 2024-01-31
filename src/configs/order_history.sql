@@ -1,0 +1,22 @@
+CREATE TABLE order_histories (
+    order_histories_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    sales_order VARCHAR(255) null,
+    nama_cust VARCHAR(255),
+    no_telp VARCHAR(15),
+    alamat VARCHAR(255),
+    nama_sales VARCHAR(255),
+    tanggal_order DATE,
+    jadwal_kirim DATE,
+    total_dp1 DECIMAL(10, 2) null,
+    metode_bayar_dp1 VARCHAR(50) null,
+    total_dp2 DECIMAL(10, 2) null,
+    metode_bayar_dp2 VARCHAR(50) null,
+    balance_due DECIMAL(10, 2),
+    status_terima INT CHECK (status_terima IN (0, 1)),
+    kode_produk TEXT,
+    nama_produk TEXT,
+    harga_per_item_setelah_ppn TEXT,
+    qty TEXT,
+    remarks TEXT
+);
