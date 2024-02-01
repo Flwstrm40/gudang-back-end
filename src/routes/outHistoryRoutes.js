@@ -5,6 +5,9 @@ const OutHistoryController = require('../controllers/outHistoryControllers');
 // Get all OutHistories
 router.get('/', OutHistoryController.getAllOutHistories);
 
+// Get sum of stok keluar per month different year
+router.get('/rekapStokKeluar/:year', OutHistoryController.getSumStokKeluarPerMonthDifferentYear);
+
 // Get a OutHistory by ID
 router.get('/:id', OutHistoryController.getOutHistoryById);
 

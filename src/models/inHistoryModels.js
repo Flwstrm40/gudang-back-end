@@ -20,6 +20,17 @@ class inHistoryModels {
   deleteInHistory(id, callback) {
     db.query('DELETE FROM in_histories WHERE id_history_masuk = ?', [id], callback);
   }
+
+  // get sum of stok masuk per month different year
+  getSumStokMasukPerMonthDifferentYear(year, callback) {
+    db.query(`SELECT YEAR(tanggal) AS tahun, MONTH(tanggal) AS bulan, SUM(stok_masuk) AS total_stok_masuk
+              FROM in_histories
+              WHERE YEAR(tanggal) = ?
+              GROUP BY YEAR(tanggal), MONTH(tanggal)
+              ORDER BY tahun, bulan;
+              `, [year], callback);
+  }
+  
 }
 
 module.exports = new inHistoryModels();
