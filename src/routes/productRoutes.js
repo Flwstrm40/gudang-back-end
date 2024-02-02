@@ -8,6 +8,9 @@ router.get('/', productController.getAllProducts);
 // Get total products
 router.get('/total', productController.getTotalProduct);
 
+// Get stock
+router.get('/getStock/:id_produk', productController.checkStock);
+
 // Get a product by ID
 router.get('/:id', productController.getProductById);
 
@@ -29,7 +32,5 @@ router.post('/cekKodeProduk', productController.checkKodeProdukAvailability);
 // Transfer stock
 router.put('/transferStock/:id_produk', productController.transferStock);
 
-// Get stock
-router.get('/getStock/:id_produk', productController.checkStock);
 
 module.exports = router;
