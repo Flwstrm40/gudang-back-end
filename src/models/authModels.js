@@ -21,7 +21,7 @@ class AuthModel {
 
   generateToken(user) {
     return jwt.sign({ userId: user.id, username: user.username, role: user.role }, process.env.SECRET_KEY, {
-      expiresIn: '1h', // Token expiration time
+      expiresIn: '5h', // Token expiration time
     });
   }
 
