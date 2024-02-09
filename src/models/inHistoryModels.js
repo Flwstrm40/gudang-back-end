@@ -2,11 +2,11 @@ const db = require('../db/db')
 
 class inHistoryModels {
   getAllInHistories(callback) {
-    db.query('SELECT ih.*, p.* FROM in_histories ih, products p WHERE ih.id_produk = p.id_produk', callback);
+    db.query('SELECT * FROM in_histories', callback);
   }
 
   getInHistoryById(id, callback) {
-    db.query('SELECT ih.*, p.* FROM in_histories ih, products p WHERE ih.id_produk = p.id_produk and ih.id_history_masuk = ?', [id], callback);
+    db.query('SELECT * FROM in_histories WHERE ih.id_history_masuk = ?', [id], callback);
   }
 
   addInHistory(historyMasuk, callback) {
