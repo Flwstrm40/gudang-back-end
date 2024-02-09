@@ -37,29 +37,29 @@ class OrderHistoryController {
     });
   }
 
-  updateOrderHistory(req, res) {
-    const id = req.params.id;
-    const product = req.body;
+  // updateOrderHistory(req, res) {
+  //   const id = req.params.id;
+  //   const product = req.body;
 
-    orderHistoryModel.updateOrderHistory(id, product, (err, result) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-        return;
-      }
-      res.json(result);
-    });
-  }
+  //   orderHistoryModel.updateOrderHistory(id, product, (err, result) => {
+  //     if (err) {
+  //       res.status(500).json({ error: err.message });
+  //       return;
+  //     }
+  //     res.json(result);
+  //   });
+  // }
 
-  deleteOrderHistory(req, res) {
-    const id = req.params.id;
-    orderHistoryModel.deleteOrderHistory(id, (err, result) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-        return;
-      }
-      res.json(result);
-    });
-  }
+  // deleteOrderHistory(req, res) {
+  //   const id = req.params.id;
+  //   orderHistoryModel.deleteOrderHistory(id, (err, result) => {
+  //     if (err) {
+  //       res.status(500).json({ error: err.message });
+  //       return;
+  //     }
+  //     res.json(result);
+  //   });
+  // }
 
   // get total data
   getTotalData(req, res) {

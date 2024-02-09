@@ -14,11 +14,11 @@ router.get('/:id', orderHistoryController.getOrderHistoryById);
 // Add a new orderHistory
 router.post('/', orderHistoryController.addOrderHistory);
 
-// Update a orderHistory
-router.put('/:id', orderHistoryController.updateOrderHistory);
+// // Update a orderHistory
+// router.put('/:id', orderHistoryController.updateOrderHistory);
 
-// Delete a orderHistory
-router.delete('/:id', orderHistoryController.deleteOrderHistory);
+// // Delete a orderHistory
+// router.delete('/:id', orderHistoryController.deleteOrderHistory);
 
 
 
