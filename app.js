@@ -36,11 +36,11 @@ const storeRoutes = require('./src/routes/storeRoutes');
 const transferRoutes = require('./src/routes/transferRoutes');
 const inHistoryRoutes = require('./src/routes/inHistoryRoutes');
 const outHistoryRoutes = require('./src/routes/outHistoryRoutes');
-const customerRoutes = require('./src/routes/customerRoutes');
 const mixRoutes = require('./src/routes/mixRoutes');
 const orderRoutes = require('./src/routes/orderRoutes');
 const orderDetailRoutes = require('./src/routes/orderDetailRoutes');
 const orderHistoriesRoutes = require('./src/routes/orderHistoryRoutes');
+const transferHistoriesRoutes = require('./src/routes/transferHistoryRoutes');
 
 const dotenv = require('dotenv');
 
@@ -97,9 +97,6 @@ app.use('/inHistories', inHistoryRoutes);
 // Routes for the outHistories
 app.use('/outHistories', outHistoryRoutes);
 
-// Routes for the customers
-app.use('/customers', customerRoutes);
-
 // Routes for the mix
 app.use('/mix', mixRoutes);
 
@@ -111,6 +108,9 @@ app.use('/orderDetails', orderDetailRoutes);
 
 // Routes for the orderHistories
 app.use('/orderHistories', orderHistoriesRoutes);
+
+// Routes for the transferHistories
+app.use('/transferHistories', transferHistoriesRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
