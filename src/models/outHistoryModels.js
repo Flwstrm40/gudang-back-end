@@ -17,7 +17,6 @@ class outHistoryModels {
                     t.deskripsi AS s_deskripsi,
                     t.harga AS s_harga_produk,
                     t.id_transfer_histories,
-                    t.id_transfer,
                     t.kuantitas,
                     t.asal,
                     t.keterangan,
@@ -26,9 +25,9 @@ class outHistoryModels {
                 FROM 
                     out_histories oh 
                 LEFT JOIN 
-                    transfer_histories t ON oh.id_transfer = t.id_transfer 
+                    transfer_histories t ON oh.id_transfer = t.id_transfer_histories 
                 LEFT JOIN 
-                    order_histories orh ON oh.order_id = orh.order_id;
+                    order_histories orh ON oh.order_id = orh.order_histories_id;
                 `, callback);
     }
 
@@ -48,7 +47,6 @@ class outHistoryModels {
                     t.deskripsi AS s_deskripsi,
                     t.harga AS s_harga_produk,
                     t.id_transfer_histories,
-                    t.id_transfer,
                     t.kuantitas,
                     t.asal,
                     t.keterangan,
@@ -57,9 +55,9 @@ class outHistoryModels {
                 FROM 
                     out_histories oh 
                 LEFT JOIN 
-                    transfer_histories t ON oh.id_transfer = t.id_transfer 
+                    transfer_histories t ON oh.id_transfer = t.id_transfer_histories 
                 LEFT JOIN 
-                    order_histories orh ON oh.order_id = orh.order_id
+                    order_histories orh ON oh.order_id = orh.order_histories_id
                 and oh.id_history_keluar = ?`, [id], callback);
     }
 
