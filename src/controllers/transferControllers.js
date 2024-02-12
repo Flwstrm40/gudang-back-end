@@ -39,7 +39,7 @@ class TransferController {
       }
   
       // Proceed with adding the transfer if stock is sufficient
-      const result = await transferModel.addTransfer(transfer); // Assuming you have a Promise-based version of addTransfer
+      const result = await transferModel.addTransfer(transfer); 
   
       // If addition is successful, update the product stock by decreasing the transferred quantity
       await productController.transferStock({ params: { id_produk: transfer.id_produk }, body: { stok: transfer.kuantitas } }, res);
