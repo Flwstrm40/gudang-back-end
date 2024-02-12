@@ -30,24 +30,24 @@ class OrderModel {
     getOrderJoinDetails(callback) {
         db.query(`
     SELECT
-        o.order_id AS order_id,
-        o.sales_order AS sales_order,
+        o.order_id AS id,
+        o.sales_order AS id_SO,
         o.nama_cust,
         o.no_telp,
         o.alamat,
         o.nama_sales,
-        o.tanggal_order,
+        o.tanggal_order AS tanggal_transaksi,
         o.jadwal_kirim,
         o.total_harga,
         o.total_dp1,
-        o.metode_bayar_dp1,
+        o.metode_bayar_dp1 AS metode_dp1,
         o.total_dp2,
-        o.metode_bayar_dp2,
+        o.metode_bayar_dp2 AS metode_dp2,
         o.balance_due,
         o.status_terima,
         GROUP_CONCAT(od.kode_produk) AS kode_produk,
         GROUP_CONCAT(od.nama_produk) AS nama_produk,
-        GROUP_CONCAT(od.harga_per_item_setelah_ppn) AS harga_per_item_setelah_ppn,
+        GROUP_CONCAT(od.harga_per_item_setelah_ppn) AS harga_item_ppn,
         GROUP_CONCAT(od.qty) AS qty,
         GROUP_CONCAT(od.remarks) AS remarks
     FROM orders o
